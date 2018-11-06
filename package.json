@@ -2,6 +2,7 @@
   "name": "finanzreport",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://test.robertmrichter.de/finanzreport/",
   "dependencies": {
     "ajv": "^6.5.4",
     "bootstrap": "^4.1.3",

@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <NavBar />
-        <Menu />
-        <Dashboard />
-        <ButtonBar />
-      </div>
-    );
-  }
-}
+
 
 class NavBar extends Component {
     render() {
@@ -32,6 +21,13 @@ class Dashboard extends Component {
                 <Panel title={'Guthaben'} value={1000.34} />
                 <Panel title={'Ersparnisse'} value={10000.39} />
                 <Panel title={'Bilanz aktueller Monat'} value={-234.23}/>
+                <Panel />
+                <Panel />
+                <Panel />
+                <Panel />
+                <Panel />
+                <Panel />
+                <Panel />
             </div>
         )
     }
@@ -76,9 +72,41 @@ class ButtonBar extends Component {
     render() {
         return (
             <div className='ButtonBar'>
-
+                <BottomButton name={'Neu'}/>
             </div>
         )
+    }
+}
+
+class BottomButton extends Component {
+    render() {
+        return (
+            <button className='BottomButton'>{this.props.name}</button>
+        )
+    }
+}
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            location: 0, //Dashboard = 0
+        };
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <NavBar />
+                <Menu />
+                {//toDo}
+                }
+                {//{this.state.location} === 1 ? <Dashboard/>: <div className='Dashboard'><h1>This works!</h1></div>
+                }
+                <Dashboard />
+                <ButtonBar />
+            </div>
+        );
     }
 }
 
