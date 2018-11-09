@@ -6,9 +6,9 @@ import './App.css';
 class NavBar extends Component {
     render() {
         return (
-            <div className='NavBar'>
-                <span><h1>Finanzreport</h1></span>
-            </div>
+            <section className='NavBar'>
+                <h1>Finanzreport</h1>
+            </section>
         )
     }
 }
@@ -16,19 +16,16 @@ class NavBar extends Component {
 class Dashboard extends Component {
     render() {
         return (
-            <div className='Dashboard'>
+            <section className='Dashboard'>
                 <Panel title={'Aktueller Stand:'} value={1000.34} />
                 <Panel title={'Guthaben'} value={1000.34} />
                 <Panel title={'Ersparnisse'} value={10000.39} />
                 <Panel title={'Bilanz aktueller Monat'} value={-234.23}/>
                 <Panel />
                 <Panel />
-                <Panel />
-                <Panel />
-                <Panel />
-                <Panel />
-                <Panel />
-            </div>
+
+
+            </section>
         )
     }
 }
@@ -36,7 +33,7 @@ class Dashboard extends Component {
 class Menu extends Component {
     render() {
         return (
-            <div className='Menu'>
+            <section className='Menu'>
                 <MenuButton name={'Dashboard'}/>
                 <MenuButton name={'Übersicht'}/>
                 <MenuButton name={'Konto1'} />
@@ -44,7 +41,7 @@ class Menu extends Component {
                 <MenuButton name={'Konto3'} />
 
 
-            </div>
+            </section>
         )
     }
 }
