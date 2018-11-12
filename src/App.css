@@ -36,7 +36,6 @@ body {
 .NavBar {
     height: 100%;
     grid-area: navbar;
-    position: relative;
     display: grid;
     background: deeppink;
     background: radial-gradient(circle, #ff1493 0%, #ff69C9 35%, #ff9BFB 100%);
@@ -92,12 +91,9 @@ body {
 .Menu {
     background-color: #FAFAFA;
     border-right: 1px solid #F0F0F0;
+    position: sticky;
     grid-area: menu;
     text-align: center;
-    position: sticky;
-    z-index: 1;
-    max-height: 100vh;
-    top: 0;
 }
 
 .MenuButton {
@@ -112,6 +108,7 @@ body {
     background: white;
     color: black;
     margin-left: -5px;
+    position: sticky;
 }
 
 .MenuButton:hover {
