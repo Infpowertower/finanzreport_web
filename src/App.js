@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import { Menu } from './Menu';
 
 
 class NavBar extends Component {
@@ -13,43 +13,46 @@ class NavBar extends Component {
     }
 }
 
+class Showroom extends Component {
+  render() {
+    return(
+      <div className="Showroom">
+        <Dashboard
+          panels={
+            [{title: 'Aktueller Stand:', value: 1000.34},
+            {title: 'Guthaben', value: 1000.34},
+            {title: 'Ersparnisse', value: 10000.39},
+            {title: 'Bilanz aktueller Monat', value: -234.23}]
+          }
+        />
+        <ButtonBar />
+      </div>
+    );
+  }
+}
+
 class Dashboard extends Component {
+    constructor(props) {
+        super(props);
+        this.initPanels = this.initPanels.bind(this);
+        this.state = {
+          panels: this.props.panels,
+        };
+    }
+
+    initPanels() {
+      if (this.state.panels) {
+        return(this.state.panels.map(panel =>
+          <Panel title={panel.title} value={panel.value} />
+        ));
+      }
+    }
+
     render() {
         return (
             <section className='Dashboard'>
-                <Panel title={'Aktueller Stand:'} value={1000.34} />
-                <Panel title={'Guthaben'} value={1000.34} />
-                <Panel title={'Ersparnisse'} value={10000.39} />
-                <Panel title={'Bilanz aktueller Monat'} value={-234.23}/>
-                <Panel />
-                <Panel />
-
-
+                {this.initPanels()}
             </section>
-        )
-    }
-}
-
-class Menu extends Component {
-    render() {
-        return (
-            <section className='Menu'>
-                <MenuButton name={'Dashboard'}/>
-                <MenuButton name={'Übersicht'}/>
-                <MenuButton name={'Konto1'} />
-                <MenuButton name={'Konto2'} />
-                <MenuButton name={'Konto3'} />
-
-
-            </section>
-        )
-    }
-}
-
-class MenuButton extends Component {
-    render() {
-        return (
-            <button className='MenuButton'>{this.props.name}</button>
         )
     }
 }
@@ -92,16 +95,15 @@ class App extends Component {
     }
 
     render() {
+        let location;
+        if (this.state.location === 0) {
+          location = <Dashboard />;
+        }
         return (
             <div className="App">
                 <NavBar />
-                <Menu />
-                {//toDo}
-                }
-                {//{this.state.location} === 1 ? <Dashboard/>: <div className='Dashboard'><h1>This works!</h1></div>
-                }
-                <Dashboard />
-                <ButtonBar />
+                <Menu items={[['Dashboard', '/path'], ['Übersicht', '/path'], ['Konto', '/path']]}/>
+                <Showroom location={this.location}/>
             </div>
         );
     }

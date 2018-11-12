@@ -1,11 +1,11 @@
-.html {
+html {
     font-size: 62.5%;
 }
 
-.body {
+body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.1em;
+    font-size: 1.25em;
     line-height: 1.5;
 }
 
@@ -16,8 +16,7 @@
     grid-template-areas:
             "navbar"
             "menu"
-            "app"
-            "buttons";
+            "showroom";
     min-width: 360px;
     height: 100vh;
 }
@@ -26,46 +25,53 @@
     .App {
         display: grid;
         grid-template-columns: 200px auto;
-        grid-template-rows: 50px auto 50px;
+        grid-template-rows: 50px auto;
         grid-template-areas:
                 "navbar navbar"
-                "menu app"
-                "menu buttons";
+                "menu showroom"
 
     }
 }
 
 .NavBar {
+    height: 100%;
     grid-area: navbar;
+    position: relative;
+    display: grid;
     background: deeppink;
     background: radial-gradient(circle, #ff1493 0%, #ff69C9 35%, #ff9BFB 100%);
     padding: 0;
     margin: 0;
-    text-align: center;
-    //line-height: 100%;
 }
 
 .NavBar > h1 {
+    margin: auto;
+}
 
+.Showroom {
+  grid-area: showroom;
+  display: grid;
+  grid-template-rows: auto 50px;
+  grid-template-areas:
+          "app"
+          "buttons";
 }
 
 .Dashboard {
     background-color: white;
-    grid-area: app;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 280px;
     grid-row-gap: 20px;
-    justify-content: center;
     overflow: auto;
     padding-top: 20px;
+    padding-bottom: auto;
 }
 
 @media screen and (min-width: 1060px) {
     .Dashboard {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: 1fr;
     }
 }
 
@@ -73,7 +79,6 @@
     .Dashboard {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 1fr;
     }
 }
 
@@ -81,7 +86,6 @@
     .Dashboard {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 1fr;
     }
 }
 
@@ -112,7 +116,7 @@
 
 .MenuButton:hover {
     background: #ff1493;
-    background: linear-gradient(to right, #ff1493 0%, #ff69C9 20%, #ffffff 100%);
+    background: linear-gradient(to right, #ff1493 0%, #ff69C9 25%, #ffffff 100%);
     color: white;
 }
 
@@ -121,11 +125,10 @@
     border: 2px solid #F0F0F0;
     border-radius: 10px;
     text-align: center;
-    padding: auto;
     height: 270px;
     width: 360px;
-    justify-content: center;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .ButtonBar {
