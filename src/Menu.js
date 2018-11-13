@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Menu.css';
 
 export class Menu extends Component {
     constructor(props) {
@@ -7,7 +8,8 @@ export class Menu extends Component {
     };
 
     createButtons() {
-        return (this.props.items.map(item => <MenuButton name={item[0]}/>))
+        return (this.props.items.map((item, i) =>
+          <MenuButton name={item[0]} key={i} />))
     };
 
 

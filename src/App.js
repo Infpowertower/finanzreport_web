@@ -14,16 +14,30 @@ class NavBar extends Component {
 }
 
 class Showroom extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      panels: [{title: 'Aktueller Stand:', value: 1000.34},
+      {title: 'Guthaben', value: 1000.34},
+      {title: 'Ersparnisse', value: 10000.39},
+      {title: 'Bilanz aktueller Monat', value: -234.23}]
+    }
+    this.deletePanel = this.deletePanel.bind(this);
+  }
+
+  deletePanel(id) {
+    let newPanels = this.state.panels;
+    newPanels.splice(id, 1);
+    console.log(newPanels);
+    this.setState = {panels: newPanels};
+  }
+
   render() {
     return(
       <div className="Showroom">
         <Dashboard
-          panels={
-            [{title: 'Aktueller Stand:', value: 1000.34},
-            {title: 'Guthaben', value: 1000.34},
-            {title: 'Ersparnisse', value: 10000.39},
-            {title: 'Bilanz aktueller Monat', value: -234.23}]
-          }
+          panels= {this.state.panels}
+          deletePanel = {this.deletePanel}
         />
         <ButtonBar />
       </div>
@@ -34,38 +48,65 @@ class Showroom extends Component {
 class Dashboard extends Component {
     constructor(props) {
         super(props);
-        this.initPanels = this.initPanels.bind(this);
-        this.state = {
-          panels: this.props.panels,
-        };
+        this.makePanels = this.makePanels.bind(this);
     }
 
-    initPanels() {
-      if (this.state.panels) {
-        return(this.state.panels.map(panel =>
-          <Panel title={panel.title} value={panel.value} />
+    makePanels() {
+      if (this.props.panels) {
+        return(this.props.panels.map((panel, i) =>
+          <Panel id={i} title={panel.title} value={panel.value} key={i} deletePanel={this.props.deletePanel} />
         ));
       }
     }
 
+
+
     render() {
         return (
             <section className='Dashboard'>
-                {this.initPanels()}
+                {this.makePanels()}
             </section>
         )
     }
 }
 
 class Panel extends Component {
+    constructor(props) {
+      super(props);
+      this.state={background: 'white'};
+      this.changeColor = this.changeColor.bind(this);
+      this.handleClick = this.handleClick.bind(this);
+    }
+    changeColor() {
+      const newColor = this.state.background === 'white' ? 'grey' : 'white';
+      this.setState({background: newColor});
+    }
+
+    handleClick(e) {
+      this.props.deletePanel(this.props.id);
+    }
+
     render() {
         return (
-            <div className='Panel'>
+            <div style={{background: this.state.background}} className='Panel'>
+                <button className="Close" onClick={this.handleClick}>X</button>
                 <h3>{this.props.title}</h3>
                 <h1>{this.props.value}</h1>
+                <h3>{this.props.id}</h3>
             </div>
         )
     }
+}
+
+class Overwatch extends Component {
+  render() {
+    return(
+      <section className='Dashboard'>
+        <h1>Overwatch aktiviert!</h1>
+      </section>
+
+    );
+  }
 }
 
 class ButtonBar extends Component {
@@ -95,10 +136,6 @@ class App extends Component {
     }
 
     render() {
-        let location;
-        if (this.state.location === 0) {
-          location = <Dashboard />;
-        }
         return (
             <div className="App">
                 <NavBar />

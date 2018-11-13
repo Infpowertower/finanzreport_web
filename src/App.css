@@ -38,7 +38,12 @@ body {
     grid-area: navbar;
     display: grid;
     background: deeppink;
-    background: radial-gradient(circle, #ff1493 0%, #ff69C9 35%, #ff9BFB 100%);
+    background: linear-gradient(-90deg, #EE7752, #E73C7E, #ff9BFB, #23D5AB);
+    background-size: 400% 400%;
+    animation-name: anim-navbar;
+    animation-duration: 60s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     padding: 0;
     margin: 0;
 }
@@ -47,8 +52,21 @@ body {
     margin: auto;
 }
 
+@keyframes anim-navbar {
+  0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
 .Showroom {
   grid-area: showroom;
+  height: 100%;
   display: grid;
   grid-template-rows: auto 50px;
   grid-template-areas:
@@ -57,14 +75,15 @@ body {
 }
 
 .Dashboard {
+    grid-area: app;
     background-color: white;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 280px;
     grid-row-gap: 20px;
-    overflow: auto;
     padding-top: 20px;
-    padding-bottom: auto;
+    height: 100%;
+    overflow-y: auto;
 }
 
 @media screen and (min-width: 1060px) {
@@ -88,51 +107,36 @@ body {
     }
 }
 
-.Menu {
-    background-color: #FAFAFA;
-    border-right: 1px solid #F0F0F0;
-    position: sticky;
-    grid-area: menu;
-    text-align: center;
-}
-
-.MenuButton {
-    border: unset;
-    border: none;
-    border: 1px solid #F0F0F0;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-    width: 100%;
-    height: 40px;
-    margin-top: 5px;
-    background: white;
-    color: black;
-    margin-left: -5px;
-    position: sticky;
-}
-
-.MenuButton:hover {
-    background: #ff1493;
-    background: linear-gradient(to right, #ff1493 0%, #ff69C9 25%, #ffffff 100%);
-    color: white;
-}
 
 .Panel {
     background-color: #FFFFFF;
     border: 2px solid #F0F0F0;
     border-radius: 10px;
-    text-align: center;
     height: 270px;
     width: 360px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+}
+
+.Close {
+    all: unset;
+    margin-left: 340px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    padding: 0;
+    color: red;
+    font-size: 14px;
+}
+
+.Close:hover {
+  cursor: pointer;
 }
 
 .ButtonBar {
     grid-area: buttons;
     position: sticky;
-    background-color: #F0F0F0;
-    opacity: 0.5;
     bottom: 0;
     width: 100%;
     display: inline;
@@ -143,5 +147,5 @@ body {
     height: 100%;
     width: 100px;
     border-radius: 10px;
-    z-index: 1;
+    opacity: 1;
 }
